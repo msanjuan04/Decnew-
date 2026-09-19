@@ -1,0 +1,136 @@
+/* =========================================================================
+   DEC idiomes — Brand tokens
+   -------------------------------------------------------------------------
+   ESTE ES EL ÚNICO FICHERO QUE HAY QUE TOCAR PARA CAMBIAR LA MARCA.
+   Todo el resto del CSS consume estas variables; no hay ni un solo color
+   hardcodeado fuera de aquí.
+
+   Para aplicar los colores originales de decidiomes.com sólo hay que
+   sustituir los 5 valores del bloque "Brand core". El resto (hovers,
+   superficies, bordes, estados) se deriva automáticamente.
+   ========================================================================= */
+
+:root {
+  /* ---------------------------------------------------------------------
+     Brand core — PENDIENTE DE CONFIRMAR con la foto/logo del cliente.
+     Valores provisionales. Sustituir por los hex reales.
+     --------------------------------------------------------------------- */
+  --brand-ink:      #14364f;  /* Azul corporativo profundo — titulares, header */
+  --brand-ink-deep: #0b2335;  /* Variante oscura — footer, fondos invertidos */
+  --brand-accent:   #c8362f;  /* Rojo/acento — CTAs, subrayados, detalles */
+  --brand-warm:     #d8a02c;  /* Secundario cálido — destacados, iconografía */
+  --brand-paper:    #f6f3ed;  /* Fondo cálido de página */
+
+  /* ---------------------------------------------------------------------
+     Escala neutra — derivada, normalmente no hace falta tocarla
+     --------------------------------------------------------------------- */
+  --n-000: #ffffff;
+  --n-050: #faf8f5;
+  --n-100: #f1ece4;
+  --n-200: #e3dcd1;
+  --n-300: #cdc4b6;
+  --n-400: #a69c8c;
+  --n-500: #7d7365;
+  --n-600: #5a5348;
+  --n-700: #3d382f;
+  --n-800: #262320;
+  --n-900: #151311;
+
+  /* ---------------------------------------------------------------------
+     Roles semánticos — lo que usa el resto del CSS
+     --------------------------------------------------------------------- */
+  --c-bg:            var(--brand-paper);
+  --c-bg-raised:     var(--n-000);
+  --c-bg-sunken:     var(--n-100);
+  --c-bg-invert:     var(--brand-ink-deep);
+
+  --c-text:          var(--brand-ink);
+  --c-text-muted:    var(--n-600);
+  --c-text-subtle:   var(--n-500);
+  --c-text-invert:   var(--n-050);
+  --c-text-invert-muted: color-mix(in oklab, var(--n-050) 66%, transparent);
+
+  --c-line:          color-mix(in oklab, var(--brand-ink) 14%, transparent);
+  --c-line-strong:   color-mix(in oklab, var(--brand-ink) 28%, transparent);
+  --c-line-invert:   color-mix(in oklab, var(--n-000) 18%, transparent);
+
+  --c-accent:        var(--brand-accent);
+  --c-accent-hover:  color-mix(in oklab, var(--brand-accent) 84%, black);
+  --c-accent-soft:   color-mix(in oklab, var(--brand-accent) 10%, var(--c-bg));
+  --c-warm:          var(--brand-warm);
+  --c-warm-soft:     color-mix(in oklab, var(--brand-warm) 16%, var(--c-bg));
+
+  --c-focus:         var(--brand-accent);
+
+  /* ---------------------------------------------------------------------
+     Tipografía
+     --------------------------------------------------------------------- */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+
+  /* Escala fluida — clamp(min, preferido, max) */
+  --t-display: clamp(2.75rem, 1.6rem + 5.2vw, 6.5rem);
+  --t-h1:      clamp(2.25rem, 1.5rem + 3.4vw, 4.25rem);
+  --t-h2:      clamp(1.75rem, 1.25rem + 2.2vw, 3rem);
+  --t-h3:      clamp(1.3rem, 1.1rem + 0.9vw, 1.85rem);
+  --t-h4:      clamp(1.08rem, 1rem + 0.35vw, 1.3rem);
+  --t-lead:    clamp(1.06rem, 0.98rem + 0.45vw, 1.35rem);
+  --t-body:    1rem;
+  --t-small:   0.9375rem;
+  --t-micro:   0.8125rem;
+  --t-label:   0.75rem;
+
+  --lh-tight: 1.04;
+  --lh-snug: 1.18;
+  --lh-normal: 1.6;
+  --lh-relaxed: 1.72;
+
+  --tr-tight: -0.03em;
+  --tr-label: 0.14em;
+
+  /* ---------------------------------------------------------------------
+     Espaciado / layout
+     --------------------------------------------------------------------- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+
+  --section-y: clamp(4.5rem, 3rem + 7vw, 9rem);
+  --shell: 1280px;
+  --gutter: clamp(1.25rem, 0.75rem + 2.2vw, 3rem);
+
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* ---------------------------------------------------------------------
+     Elevación y movimiento
+     --------------------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px color-mix(in oklab, var(--brand-ink) 8%, transparent);
+  --shadow:    0 2px 4px color-mix(in oklab, var(--brand-ink) 6%, transparent),
+               0 8px 24px color-mix(in oklab, var(--brand-ink) 8%, transparent);
+  --shadow-lg: 0 4px 8px color-mix(in oklab, var(--brand-ink) 6%, transparent),
+               0 24px 56px color-mix(in oklab, var(--brand-ink) 12%, transparent);
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur: 280ms;
+  --dur-slow: 620ms;
+
+  --header-h: 76px;
+}
+
+@media (max-width: 720px) {
+  :root { --header-h: 64px; }
+}
