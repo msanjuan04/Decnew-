@@ -5,36 +5,41 @@
    Todo el resto del CSS consume estas variables; no hay ni un solo color
    hardcodeado fuera de aquí.
 
-   Para aplicar los colores originales de decidiomes.com sólo hay que
-   sustituir los 5 valores del bloque "Brand core". El resto (hovers,
-   superficies, bordes, estados) se deriva automáticamente.
+   Paleta tomada de la web original (decidiomes.com): blanco, negro,
+   turquesa del globo del logotipo y rojo de los botones de acción.
+   Los valores se muestrearon píxel a píxel sobre una captura del sitio.
    ========================================================================= */
 
 :root {
   /* ---------------------------------------------------------------------
-     Brand core — PENDIENTE DE CONFIRMAR con la foto/logo del cliente.
-     Valores provisionales. Sustituir por los hex reales.
+     Brand core — colores originales de DEC idiomes
      --------------------------------------------------------------------- */
-  --brand-ink:      #14364f;  /* Azul corporativo profundo — titulares, header */
-  --brand-ink-deep: #0b2335;  /* Variante oscura — footer, fondos invertidos */
-  --brand-accent:   #c8362f;  /* Rojo/acento — CTAs, subrayados, detalles */
-  --brand-warm:     #d8a02c;  /* Secundario cálido — destacados, iconografía */
-  --brand-paper:    #f6f3ed;  /* Fondo cálido de página */
+  --brand-ink:      #141817;  /* Negro de titulares y texto */
+  --brand-ink-deep: #0d1514;  /* Casi negro con matiz turquesa: secciones invertidas */
+  --brand-accent:   #c43a39;  /* Rojo de los botones "Accedeix al formulari" */
+  --brand-teal:     #67d2cb;  /* Turquesa del globo del logotipo y los subrayados */
+  --brand-paper:    #ffffff;  /* Fondo de página */
+
+  /* Mismo tono que --brand-teal pero oscurecido hasta 5.18:1 sobre blanco.
+     El turquesa original da 1.80:1: vale para reglas, rellenos e iconos
+     sobre fondo oscuro, pero NO es legible como texto sobre blanco.
+     Usar esta variante siempre que el turquesa haga de texto en claro. */
+  --brand-teal-ink: #0f7a73;
 
   /* ---------------------------------------------------------------------
      Escala neutra — derivada, normalmente no hace falta tocarla
      --------------------------------------------------------------------- */
   --n-000: #ffffff;
-  --n-050: #faf8f5;
-  --n-100: #f1ece4;
-  --n-200: #e3dcd1;
-  --n-300: #cdc4b6;
-  --n-400: #a69c8c;
-  --n-500: #7d7365;
-  --n-600: #5a5348;
-  --n-700: #3d382f;
-  --n-800: #262320;
-  --n-900: #151311;
+  --n-050: #fafbfb;
+  --n-100: #f2f5f5;
+  --n-200: #e4e9e9;
+  --n-300: #cbd3d2;
+  --n-400: #a3adac;
+  --n-500: #767e7d;
+  --n-600: #525858;
+  --n-700: #383d3c;
+  --n-800: #212524;
+  --n-900: #121514;
 
   /* ---------------------------------------------------------------------
      Roles semánticos — lo que usa el resto del CSS
@@ -50,15 +55,19 @@
   --c-text-invert:   var(--n-050);
   --c-text-invert-muted: color-mix(in oklab, var(--n-050) 66%, transparent);
 
-  --c-line:          color-mix(in oklab, var(--brand-ink) 14%, transparent);
-  --c-line-strong:   color-mix(in oklab, var(--brand-ink) 28%, transparent);
-  --c-line-invert:   color-mix(in oklab, var(--n-000) 18%, transparent);
+  --c-line:          color-mix(in oklab, var(--brand-ink) 13%, transparent);
+  --c-line-strong:   color-mix(in oklab, var(--brand-ink) 26%, transparent);
+  --c-line-invert:   color-mix(in oklab, var(--n-000) 17%, transparent);
 
   --c-accent:        var(--brand-accent);
   --c-accent-hover:  color-mix(in oklab, var(--brand-accent) 84%, black);
-  --c-accent-soft:   color-mix(in oklab, var(--brand-accent) 10%, var(--c-bg));
-  --c-warm:          var(--brand-warm);
-  --c-warm-soft:     color-mix(in oklab, var(--brand-warm) 16%, var(--c-bg));
+  --c-accent-soft:   color-mix(in oklab, var(--brand-accent) 9%, var(--c-bg));
+
+  /* Turquesa: --c-teal para superficies, reglas y fondos oscuros;
+     --c-teal-ink para cualquier texto o icono sobre fondo claro. */
+  --c-teal:          var(--brand-teal);
+  --c-teal-ink:      var(--brand-teal-ink);
+  --c-teal-soft:     color-mix(in oklab, var(--brand-teal) 15%, var(--c-bg));
 
   --c-focus:         var(--brand-accent);
 

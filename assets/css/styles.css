@@ -2,6 +2,8 @@
    DEC idiomes — Stylesheet
    Arquitectura: tokens.css (marca) → styles.css (sistema + secciones)
    Ningún color literal en este fichero: todo sale de var(--c-*).
+   Única excepción deliberada: la regla @media print del final, que fuerza
+   blanco y negro pase lo que pase con la paleta.
    ========================================================================= */
 
 /* -------------------------------------------------------------------------
@@ -169,13 +171,17 @@ p { text-wrap: pretty; }
   gap: var(--s-3);
   margin-bottom: var(--s-5);
 }
+/* Regla turquesa: es el gesto más reconocible de la marca original,
+   la línea bajo los títulos de sección. */
 .sec-head__eyebrow::after {
   content: "";
   flex: 1;
   height: 1px;
-  background: var(--c-line);
+  background: var(--c-teal);
 }
-.section--invert .sec-head__eyebrow::after { background: var(--c-line-invert); }
+.section--invert .sec-head__eyebrow::after {
+  background: color-mix(in oklab, var(--c-teal) 70%, transparent);
+}
 .sec-head__num {
   font-family: var(--font-mono);
   font-size: var(--t-micro);
@@ -315,33 +321,37 @@ p { text-wrap: pretty; }
 }
 
 /* Logotipo */
+/* Logotipo: globo turquesa + "DEC idiomes", siguiendo la marca original */
 .logo {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.44rem;
-  font-family: var(--font-display);
-  font-size: 1.32rem;
-  font-weight: 600;
-  letter-spacing: -0.035em;
+  align-items: center;
+  gap: 0.42rem;
   color: var(--c-text);
   flex-shrink: 0;
 }
 .logo__mark {
   display: inline-grid;
   place-items: center;
-  width: 30px; height: 30px;
-  border-radius: 7px;
-  background: var(--c-accent);
-  color: var(--n-000);
+  width: 27px; height: 27px;
+  color: var(--c-teal-ink);
+  transition: transform var(--dur-slow) var(--ease-out-expo);
+}
+.logo__mark svg { width: 100%; height: 100%; }
+.logo:hover .logo__mark { transform: rotate(-14deg); }
+
+.logo__dec {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 1.16rem;
   font-weight: 800;
   letter-spacing: 0.01em;
-  align-self: center;
-  transition: transform var(--dur) var(--ease-out-expo);
 }
-.logo:hover .logo__mark { transform: rotate(-6deg) scale(1.04); }
-.logo__word { font-weight: 400; color: var(--c-text-muted); }
+.logo__word {
+  font-family: var(--font-sans);
+  font-size: 1.16rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--c-text-muted);
+}
 
 /* Nav escritorio */
 .nav {
@@ -518,7 +528,7 @@ p { text-wrap: pretty; }
   aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(circle at 40% 40%,
-              color-mix(in oklab, var(--c-warm) 26%, transparent) 0%,
+              color-mix(in oklab, var(--c-teal) 26%, transparent) 0%,
               transparent 68%);
   filter: blur(18px);
 }
@@ -546,7 +556,7 @@ p { text-wrap: pretty; }
   display: inline-block;
   padding: 0.16rem 0.5rem;
   border-radius: var(--radius-pill);
-  background: var(--c-warm-soft);
+  background: var(--c-teal-soft);
   color: var(--c-text);
   font-weight: 600;
   font-size: var(--t-label);
@@ -726,7 +736,8 @@ p { text-wrap: pretty; }
   min-height: 260px;
   transition: background var(--dur) var(--ease);
 }
-.card:hover { background: var(--c-bg-raised); }
+/* El fondo de página es blanco, así que el hover tiene que ir hacia el gris */
+.card:hover { background: var(--c-bg-sunken); }
 
 .card__top {
   display: flex;
@@ -821,7 +832,7 @@ p { text-wrap: pretty; }
   display: block;
   height: 100%;
   border-radius: 2px;
-  background: var(--c-warm);
+  background: var(--c-teal);
   transform-origin: left;
   transform: scaleX(var(--fill, 0.5));
   transition: transform 900ms var(--ease-out-expo) 240ms;
@@ -847,7 +858,7 @@ p { text-wrap: pretty; }
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
   gap: clamp(1.75rem, 1rem + 3vw, 3.5rem);
 }
-.method__item { border-top: 2px solid var(--c-text); padding-top: var(--s-4); }
+.method__item { border-top: 2px solid var(--c-teal); padding-top: var(--s-4); }
 .method__num {
   font-family: var(--font-mono);
   font-size: var(--t-micro);
@@ -886,12 +897,12 @@ p { text-wrap: pretty; }
   box-shadow: var(--shadow);
   border-color: var(--c-line-strong);
 }
+/* Turquesa, no rojo: el rojo queda reservado para las llamadas a la acción */
 .room__flagline {
   position: absolute;
   inset: 0 auto 0 0;
   width: 3px;
-  background: var(--c-accent);
-  opacity: 0.8;
+  background: var(--c-teal);
 }
 .room__name {
   font-family: var(--font-display);
@@ -909,11 +920,12 @@ p { text-wrap: pretty; }
   margin-top: var(--s-5);
   padding: var(--s-4);
   border-radius: var(--radius);
-  background: var(--c-warm-soft);
+  background: var(--c-teal-soft);
   font-size: var(--t-small);
   color: var(--c-text-muted);
 }
-.rooms-note svg { flex-shrink: 0; margin-top: 2px; color: var(--c-warm); }
+/* Turquesa oscurecido: el icono va sobre fondo claro */
+.rooms-note svg { flex-shrink: 0; margin-top: 2px; color: var(--c-teal-ink); }
 
 /* -------------------------------------------------------------------------
    12. Viatges (bloque destacado)
@@ -930,7 +942,7 @@ p { text-wrap: pretty; }
   border-radius: var(--radius-lg);
   overflow: hidden;
   background:
-    radial-gradient(90% 70% at 20% 15%, color-mix(in oklab, var(--c-warm) 30%, transparent), transparent 70%),
+    radial-gradient(90% 70% at 20% 15%, color-mix(in oklab, var(--c-teal) 30%, transparent), transparent 70%),
     radial-gradient(80% 80% at 85% 90%, color-mix(in oklab, var(--c-accent) 24%, transparent), transparent 70%),
     var(--c-bg-sunken);
   display: grid;
@@ -1081,7 +1093,8 @@ p { text-wrap: pretty; }
   letter-spacing: var(--tr-tight);
   font-variation-settings: "opsz" 40;
 }
-.stars { display: flex; gap: 2px; color: var(--c-warm); }
+/* Turquesa oscurecido: las estrellas van sobre fondo claro */
+.stars { display: flex; gap: 2px; color: var(--c-teal-ink); }
 .rating__meta { font-size: var(--t-small); color: var(--c-text-muted); }
 
 .quotes {
@@ -1095,7 +1108,7 @@ p { text-wrap: pretty; }
   flex-direction: column;
   gap: var(--s-4);
   padding: clamp(1.4rem, 1.1rem + 1vw, 2rem);
-  background: var(--c-bg-raised);
+  background: var(--c-bg-sunken);
   border: 1px solid var(--c-line);
   border-radius: var(--radius-lg);
 }
@@ -1147,7 +1160,7 @@ p { text-wrap: pretty; }
   width: 2.5rem; height: 2.5rem;
   border: 1px solid var(--c-line-invert);
   border-radius: var(--radius);
-  color: var(--c-warm);
+  color: var(--c-teal);
 }
 .contact__row dt {
   font-size: var(--t-label);
@@ -1157,7 +1170,7 @@ p { text-wrap: pretty; }
   margin-bottom: 0.3rem;
 }
 .contact__row dd { font-size: var(--t-small); line-height: 1.55; }
-.contact__row dd a:hover { color: var(--c-warm); }
+.contact__row dd a:hover { color: var(--c-teal); }
 
 /* Formulario */
 .form {
@@ -1200,7 +1213,7 @@ p { text-wrap: pretty; }
 .field select:focus,
 .field textarea:focus {
   outline: none;
-  border-color: var(--c-warm);
+  border-color: var(--c-teal);
   background: color-mix(in oklab, var(--brand-ink-deep) 75%, transparent);
 }
 .field textarea { resize: vertical; min-height: 118px; }
@@ -1221,7 +1234,7 @@ p { text-wrap: pretty; }
   gap: var(--s-3);
   align-items: flex-start;
 }
-.field--check input { width: 17px; height: 17px; flex-shrink: 0; margin-top: 2px; accent-color: var(--c-warm); }
+.field--check input { width: 17px; height: 17px; flex-shrink: 0; margin-top: 2px; accent-color: var(--c-teal); }
 .field--check label {
   font-size: var(--t-micro);
   text-transform: none;
@@ -1252,8 +1265,8 @@ p { text-wrap: pretty; }
 }
 .form__status.is-visible { display: block; }
 .form__status[data-state="ok"] {
-  background: color-mix(in oklab, var(--c-warm) 18%, transparent);
-  border: 1px solid color-mix(in oklab, var(--c-warm) 42%, transparent);
+  background: color-mix(in oklab, var(--c-teal) 18%, transparent);
+  border: 1px solid color-mix(in oklab, var(--c-teal) 42%, transparent);
 }
 .form__status[data-state="error"] {
   background: color-mix(in oklab, var(--c-accent) 20%, transparent);
@@ -1275,6 +1288,8 @@ p { text-wrap: pretty; }
 }
 .footer .logo { color: var(--c-text-invert); }
 .footer .logo__word { color: var(--c-text-invert-muted); }
+/* Sobre fondo oscuro sí cabe el turquesa original, a plena saturación */
+.footer .logo__mark { color: var(--c-teal); }
 
 .footer__grid {
   display: grid;
@@ -1377,6 +1392,7 @@ p { text-wrap: pretty; }
    ------------------------------------------------------------------------- */
 @media print {
   .header, .drawer, .marquee, .form, .socials, .skip-link { display: none !important; }
+  /* Literales a propósito: al imprimir siempre blanco y negro */
   body { background: #fff; color: #000; }
   .section { padding-block: 1.5rem; break-inside: avoid; }
 }

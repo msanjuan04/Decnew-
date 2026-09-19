@@ -28,32 +28,50 @@ python3 -m http.server 8000
 
 ---
 
-## Cambiar los colores de marca
+## Colores de marca
 
-**Todo el color del sitio sale de cinco variables.** No hay ni un solo valor
-hexadecimal en `styles.css`: los hovers, bordes, fondos suaves y estados se
-derivan solos con `color-mix()`.
+La paleta es la de la web original, muestreada píxel a píxel sobre una captura
+del sitio: blanco, negro, el turquesa del globo del logotipo y el rojo de los
+botones.
 
-Editar únicamente el bloque *Brand core* de `assets/css/tokens.css`:
+**Todo el color sale de cinco variables.** `styles.css` no tiene ningún valor
+hexadecimal —salvo la regla de impresión, que fuerza blanco y negro a
+propósito—: hovers, bordes, fondos suaves y estados se derivan solos con
+`color-mix()`. Para cambiar la marca se edita únicamente el bloque *Brand core*
+de `assets/css/tokens.css`:
 
 ```css
---brand-ink:      #14364f;  /* azul corporativo: titulares, textos, header */
---brand-ink-deep: #0b2335;  /* variante oscura: footer y secciones invertidas */
---brand-accent:   #c8362f;  /* acento: botones, subrayados, detalles */
---brand-warm:     #d8a02c;  /* secundario cálido: iconos, destacados */
---brand-paper:    #f6f3ed;  /* fondo de página */
+--brand-ink:      #141817;  /* negro de titulares y texto */
+--brand-ink-deep: #0d1514;  /* casi negro: footer y secciones invertidas */
+--brand-accent:   #c43a39;  /* rojo de los botones */
+--brand-teal:     #67d2cb;  /* turquesa del logotipo y los subrayados */
+--brand-paper:    #ffffff;  /* fondo de página */
 ```
 
-> ⚠️ **Los valores actuales son provisionales.** No se pudo acceder a
-> decidiomes.com desde el entorno donde se construyó esto (bloqueo de red), así
-> que la paleta está pendiente de sustituir por la original.
+### Por qué hay dos turquesas
 
-Hay **dos sitios más** con el color escrito a mano, porque no pueden leer
-variables CSS:
+El turquesa de marca `#67d2cb` da **1,80:1 de contraste sobre blanco**. El
+mínimo para texto es 4,5:1, así que en la web actual los enlaces en turquesa
+resultan ilegibles para bastante gente (vista cansada, pantallas con brillo,
+daltonismo).
+
+La solución no es cambiar el color de marca, sino usarlo donde funciona:
+
+| Variable | Valor | Dónde |
+|---|---|---|
+| `--c-teal` | `#67d2cb` | Reglas, rellenos, barras e iconos **sobre fondo oscuro** (ahí da 10,3:1) |
+| `--c-teal-ink` | `#0f7a73` | El **mismo tono** oscurecido, para cuando el turquesa hace de **texto o icono sobre claro** (5,2:1) |
+
+A simple vista se leen como el mismo turquesa. El rojo `#c43a39` da 5,2:1 sobre
+blanco y con texto blanco encima, así que sirve tal cual para los botones.
+
+### Colores fuera de los tokens
+
+Dos sitios llevan el valor escrito a mano, porque no pueden leer variables CSS:
 
 | Fichero | Qué cambiar |
 |---|---|
-| `assets/img/favicon.svg` | El `fill` del `<rect>` (acento) y el del `<text>` |
+| `assets/img/favicon.svg` | El `fill` del `<rect>` y el `stroke` del globo |
 | `index.html` | `<meta name="theme-color">` en el `<head>` |
 
 ---
@@ -100,6 +118,7 @@ antes de publicar**:
 | Footer | Aviso legal, privacidad y cookies | Páginas por redactar (obligatorio con el formulario activo) |
 | Qui som | Retrato de dirección | Ahora hay una placa con las iniciales; sustituir por fotografía |
 | Todo el sitio | Fotografías reales de aulas y actividades | El diseño funciona sin ellas, pero ganaría mucho |
+| Cabecera y pie | Logotipo | Es una reconstrucción en SVG (globo turquesa + «DEC idiomes»). Si existe el original vectorial, sustituirlo |
 
 Datos que **sí** están verificados con fuentes públicas: dirección, teléfono
 (93 568 60 77), fundación en 1999, dirección de Cristina Sardanyés i Cayuela,
@@ -134,8 +153,10 @@ recoge datos personales y ya incluye la casilla de consentimiento.
   que da el aire editorial en lugar de aire de plantilla.
 - **Retícula.** Cabeceras de sección numeradas (`01 — Cursos`) con el titular a la
   izquierda y la entradilla a la derecha, repetido en las ocho secciones.
-- **Color.** Se alternan fondo papel, fondo hundido y dos secciones invertidas
-  (Exámenes y Contacto) para marcar ritmo sin recurrir a más colores.
+- **Color.** Se alternan blanco, gris muy claro y dos secciones casi negras
+  (Exámenes y Contacto) para marcar ritmo sin añadir ni un color más. El rojo
+  queda reservado a las llamadas a la acción; el turquesa hace de hilo
+  conductor en reglas, barras y detalles.
 - **Sin imágenes de stock.** Las zonas gráficas son composiciones CSS. Es
   preferible a fotos genéricas, y deja el hueco listo para las fotos reales.
 - **Movimiento.** Entradas por `IntersectionObserver` y una marquesina. Todo se
