@@ -44,26 +44,29 @@ de `assets/css/tokens.css`:
 --brand-ink:      #141817;  /* negro de titulares y texto */
 --brand-ink-deep: #0d1514;  /* casi negro: footer y secciones invertidas */
 --brand-accent:   #c43a39;  /* rojo de los botones */
---brand-teal:     #67d2cb;  /* turquesa del logotipo y los subrayados */
+--brand-teal:     #2bd5cc;  /* turquesa corporativo */
 --brand-paper:    #ffffff;  /* fondo de página */
 ```
 
 ### Por qué hay dos turquesas
 
-El turquesa de marca `#67d2cb` da **1,80:1 de contraste sobre blanco**. El
-mínimo para texto es 4,5:1, así que en la web actual los enlaces en turquesa
-resultan ilegibles para bastante gente (vista cansada, pantallas con brillo,
-daltonismo).
+El turquesa de marca `#2bd5cc` da **1,83:1 de contraste sobre blanco**. El
+mínimo para texto es 4,5:1, así que usarlo como texto lo vuelve ilegible para
+bastante gente (vista cansada, pantallas con brillo, daltonismo).
 
 La solución no es cambiar el color de marca, sino usarlo donde funciona:
 
 | Variable | Valor | Dónde |
 |---|---|---|
-| `--c-teal` | `#67d2cb` | Reglas, rellenos, barras e iconos **sobre fondo oscuro** (ahí da 10,3:1) |
-| `--c-teal-ink` | `#0f7a73` | El **mismo tono** oscurecido, para cuando el turquesa hace de **texto o icono sobre claro** (5,2:1) |
+| `--c-teal` | `#2bd5cc` | Reglas, rellenos, barras e iconos **sobre fondo oscuro** (ahí da 10,1:1) |
+| `--c-teal-ink` | `#187974` | El **mismo tono y saturación** oscurecidos, para cuando el turquesa hace de **texto o icono sobre claro** (5,2:1) |
 
-A simple vista se leen como el mismo turquesa. El rojo `#c43a39` da 5,2:1 sobre
-blanco y con texto blanco encima, así que sirve tal cual para los botones.
+Los dos comparten tono (176,8°), así que a simple vista son el mismo turquesa.
+**Si se cambia `--brand-teal`, hay que recalcular `--brand-teal-ink`**: bajar la
+luminosidad HSL manteniendo tono y saturación hasta superar 4,5:1 sobre blanco.
+
+El rojo `#c43a39` da 5,2:1 sobre blanco y también con texto blanco encima, así
+que sirve tal cual para los botones sin necesitar variante.
 
 ### Colores fuera de los tokens
 

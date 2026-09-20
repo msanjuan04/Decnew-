@@ -17,14 +17,15 @@
   --brand-ink:      #141817;  /* Negro de titulares y texto */
   --brand-ink-deep: #0d1514;  /* Casi negro con matiz turquesa: secciones invertidas */
   --brand-accent:   #c43a39;  /* Rojo de los botones "Accedeix al formulari" */
-  --brand-teal:     #67d2cb;  /* Turquesa del globo del logotipo y los subrayados */
+  --brand-teal:     #2bd5cc;  /* Turquesa corporativo (tono 176,8°) */
   --brand-paper:    #ffffff;  /* Fondo de página */
 
-  /* Mismo tono que --brand-teal pero oscurecido hasta 5.18:1 sobre blanco.
-     El turquesa original da 1.80:1: vale para reglas, rellenos e iconos
-     sobre fondo oscuro, pero NO es legible como texto sobre blanco.
-     Usar esta variante siempre que el turquesa haga de texto en claro. */
-  --brand-teal-ink: #0f7a73;
+  /* Mismo tono y saturación que --brand-teal, oscurecido hasta 5,23:1 sobre
+     blanco. El turquesa corporativo da 1,83:1: perfecto para reglas, rellenos
+     e iconos sobre fondo oscuro (10,1:1), pero NO es legible como texto sobre
+     blanco. Usar esta variante siempre que el turquesa haga de texto en claro.
+     Si cambia --brand-teal, recalcular esta manteniendo el tono. */
+  --brand-teal-ink: #187974;
 
   /* ---------------------------------------------------------------------
      Escala neutra — derivada, normalmente no hace falta tocarla
