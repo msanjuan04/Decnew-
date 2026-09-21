@@ -39,7 +39,7 @@ Once secciones, siguiendo el brief de diseño facilitado por el cliente:
 | S7 | Modalidades | 3 tarjetas, la central elevada con cabecera turquesa |
 | S8 | Contacto | Bloque turquesa, inputs de línea, dos espirales espejadas |
 | S9 | Los espacios | 3 círculos: las siete aulas repartidas en tres espacios |
-| S10 | Reseñas | Tarjetas escalonadas con avatar solapando el borde |
+| S10 | Reseñas | 6 reseñas reales de Google, escalonadas, con avatar solapando el borde |
 | S11 | Footer | Bloque turquesa con esquinas superiores redondeadas, 3 columnas |
 
 ### Las dos firmas visuales
@@ -121,15 +121,29 @@ Redactado a partir de fuentes públicas. **Confirmar con la escuela antes de pub
 
 | Dónde | Qué | Estado |
 |---|---|---|
-| S10 Reseñas | Los tres testimonios | **Textos de muestra.** Sustituir por reseñas reales de Google |
 | S7 Modalidades | Los tres formatos y sus contenidos | Inferidos. El "in-company" en particular hay que confirmarlo |
 | S7 Modalidades | Precios | **No hay.** Dice "Consúltanos"; si se publican tarifas, el widget ya está montado |
 | Contacto y footer | `info@decidiomes.com` | **Inventado.** Es la dirección más probable, pero no está confirmada |
-| Todo el sitio | Horario exacto | Solo se dice "de lunes a viernes, tarde" |
+| Todo el sitio | **Horario exacto** | Lo único que queda del encargo original. Ahora sólo se dice "de lunes a viernes, tarde" |
 | Footer | Instagram y Facebook | Apuntan a `#` |
 | Footer | Privacidad, aviso legal y cookies | Por redactar (obligatorio con el formulario activo) |
 | S2, S4, S9 | Fotografías reales | Las zonas gráficas son composiciones CSS; el diseño las admite tal cual |
 | Cabecera y pie | Logotipo | Reconstrucción en SVG. Sustituir si aparece el original vectorial |
+
+### Sobre las reseñas
+
+Las seis de S10 son **reales, publicadas en Google y transcritas literalmente**.
+Van escritas en el idioma en que cada persona las dejó (castellano o catalán) y
+**no se traducen al cambiar de idioma**: son palabras atribuidas a personas
+concretas, así que traducirlas sería ponerles en la boca algo que no dijeron. Sólo
+se localiza la línea de procedencia ("Reseña de Google · hace 4 años").
+
+Se han usado únicamente las reseñas **completas**. Las que Google recorta con
+"… Más" (Susana Moreno, Francisco Marquez, Sergio Fernández, jcanosoto93) quedan
+fuera para no inventar el final; si se recupera el texto íntegro, entran sin más.
+
+El agregado está verificado: **19 reseñas en Google + 2 en Facebook = 21, todas de
+cinco estrellas**, que es justo la cifra del JSON-LD.
 
 **Diferencia respecto al brief:** la sección de profesores (S9 en la referencia) se ha
 resuelto como "Los espacios", porque no había nombres ni fotos de profesorado y no se
